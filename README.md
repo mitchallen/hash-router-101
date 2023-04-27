@@ -1,10 +1,12 @@
 # hash-router-101
 ==
+hash router experiment 
+--
 
 ## Usage 
 
 ```sh
-## Assumes Python 3 default
+## Python 3 server
 python3 -m http.server
 
 http://localhost:8000/#/
