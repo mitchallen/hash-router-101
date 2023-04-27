@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hash Router Example</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      // Define the hash router
+      const router = {
+        '#/json': () => {
+          const response = { format: 'json', body: { message: 'From /#/json' } };
+          return response
+        },
+        '#/code': () => {
+          const response = { format: 'code', body: `$ node index.js` };
+          return response
+        },
+        '#/html': () => {
+          const response = { format: 'html', body: '<b><i>From /#/html</i></b>' };
+          return response;
+        },
+        '#/hello': () => {
+          const response = `Hello World!`;
+          return response;
+        },
+        // Add more hash routes as needed
+      };
+
+      // Handle hash change events
+      function handleHashChange() {
+        const hash = window.location.hash;
+        if (router[hash]) {
+          const response = router[hash]();
+          switch( response.format ) {
+            case 'html': 
+                document.getElementById('app').innerHTML = response.body; 
+                break;
+            case 'json': 
+                document.getElementById('app').textContent = JSON.stringify(response.body);
+                break;
+            case 'code': 
+                let style = `style="font-size: 20px; width: 200px; background-color: lightgray;"`
+                document.getElementById('app').innerHTML = `<pre ${style}>${response.body}</pre>`; 
+                break;
+            case 'html': 
+                document.getElementById('app').innerHTML = response.body; 
+                break;
+            default:
+                document.getElementById('app').textContent = response;
+                break;
+          }
+          
+        } else {
+            // document.getElementById('app').textContent = 'Home Page';
+            document.getElementById('app').innerHTML = '<h1>Home Page</h1>';
+        }
+      }
+
+      // Add event listener for hash change events
+      window.addEventListener('hashchange', handleHashChange);
+
+      // Call handleHashChange() initially to handle any existing hash value
+      handleHashChange();
+    </script>
+  </body>
+</html>
