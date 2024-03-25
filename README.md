@@ -3,6 +3,14 @@ hash-router-101
 hash router experiment 
 --
 
+## Demo
+
+* https://mitchallen.github.io/hash-router-101
+* https://mitchallen.github.io/hash-router-101/#/hello
+* https://mitchallen.github.io/hash-router-101/#/html
+* https://mitchallen.github.io/hash-router-101/#/json
+* https://mitchallen.github.io/hash-router-101/#/code
+
 ## Usage 
 
 ```sh
