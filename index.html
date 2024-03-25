@@ -48,14 +48,15 @@
                 document.getElementById('app').innerHTML = response.body; 
                 break;
             default:
-                // document.getElementById('app').textContent = response;
-                document.getElementById('app').innerHTML = `<h1>Not Found</h1>`;
+                // probably never gets here?
+                document.getElementById('app').textContent = response;
                 break;
           }
           
         } else {
             // document.getElementById('app').textContent = 'Home Page';
-            document.getElementById('app').innerHTML = '<h1>Home Page</h1>';
+            // document.getElementById('app').innerHTML = '<h1>Home Page</h1>';
+            document.getElementById('app').innerHTML = `<h1>Not Found</h1>`;
         }
       }
 
