@@ -48,7 +48,8 @@
                 document.getElementById('app').innerHTML = response.body; 
                 break;
             default:
-                document.getElementById('app').textContent = response;
+                // document.getElementById('app').textContent = response;
+                document.getElementById('app').innerHTML = `<h1>Not Found</h1>`;
                 break;
           }
           

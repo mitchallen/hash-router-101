@@ -10,6 +10,7 @@ hash router experiment
 * https://mitchallen.github.io/hash-router-101/#/html
 * https://mitchallen.github.io/hash-router-101/#/json
 * https://mitchallen.github.io/hash-router-101/#/code
+* https://mitchallen.github.io/hash-router-101/#/BOGUS - not found test
 
 ## Usage 
 
