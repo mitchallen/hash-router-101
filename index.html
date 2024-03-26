@@ -1,67 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Hash Router Example</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script>
-      // Define the hash router
-      const router = {
-        '#/json': () => {
-          const response = { format: 'json', body: { message: 'From /#/json' } };
-          return response
-        },
-        '#/code': () => {
-          const response = { format: 'code', body: `$ node index.js` };
-          return response
-        },
-        '#/html': () => {
-          const response = { format: 'html', body: '<b><i>From /#/html</i></b>' };
-          return response;
-        },
-        '#/hello': () => {
-          const response = `Hello World!`;
-          return response;
-        },
-        // Add more hash routes as needed
-      };
 
-      // Handle hash change events
-      function handleHashChange() {
-        const hash = window.location.hash;
-        if (router[hash]) {
-          const response = router[hash]();
-          switch( response.format ) {
-            case 'html': 
-                document.getElementById('app').innerHTML = response.body; 
-                break;
-            case 'json': 
-                document.getElementById('app').textContent = JSON.stringify(response.body);
-                break;
-            case 'code': 
-                let style = `style="font-size: 20px; width: 200px; background-color: lightgray;"`
-                document.getElementById('app').innerHTML = `<pre ${style}>${response.body}</pre>`; 
-                break;
-            case 'html': 
-                document.getElementById('app').innerHTML = response.body; 
-                break;
-            default:
-                document.getElementById('app').textContent = response;
-                break;
-          }
-          
-        } else {
-            document.getElementById('app').textContent = 'Home Page';  
-        }
+<head>
+  <meta charset="UTF-8">
+  <title>Hash Router Example</title>
+</head>
+
+<body>
+  <a href="/">home</a>
+  <a href="/#/hello">hello</a>
+  <a href="/#/json">json</a>
+  <a href="/#/code">code</a>
+  <a href="/#/html">html</a>
+  <hr size="1" />
+  <div id="app"></div>
+  <script>
+    // Define the hash router
+    const router = {
+      '#/json':  JSON.stringify({ message: 'From /#/json' }),
+      '#/code': `<pre style="font-size: 20px; width: 200px; background-color: lightgray;">$ node index.js</pre>`,
+      '#/html': '<b><i>From /#/html</i></b>',
+      '#/hello': `Hello World!!!`,
+    };
+
+    // Handle hash change events
+    function handleHashChange() {
+      const hash = window.location.hash;
+      const pageHTML = router[hash]
+      if (pageHTML) {
+        document.getElementById('app').innerHTML = pageHTML;
+      } else {
+        document.getElementById('app').textContent = 'Home Page';
       }
+    }
 
-      // Add event listener for hash change events
-      window.addEventListener('hashchange', handleHashChange);
+    // Add event listener for hash change events
+    window.addEventListener('hashchange', handleHashChange);
 
-      // Call handleHashChange() initially to handle any existing hash value
-      handleHashChange();
-    </script>
-  </body>
+    // Call handleHashChange() initially to handle any existing hash value
+    window.addEventListener('load', handleHashChange);
+  </script>
+</body>
+
 </html>
